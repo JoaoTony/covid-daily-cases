@@ -26,9 +26,3 @@ export const FilterSection = styled.div`
 
   margin: 10px 0 40px;
 `;
-
-export const Input = styled.input`
-  width: 150px;
-  height: 40px;
-  border-radius: 8px;
-`;

@@ -8,9 +8,10 @@ const locationPoints = [1, 91.25, 182.5, 273.75, 365];
 export interface LocationPointProps {
   elementWidth: number,
   daysOfYear: number[],
+  selectedYear: string
 }
 
-const LocationPoints: FC<LocationPointProps> = ({ elementWidth, daysOfYear }) => {
+const LocationPoints: FC<LocationPointProps> = ({ elementWidth, daysOfYear, selectedYear }) => {
   const [locationPointWidth, setLocationPointWidth] = useState(0);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const LocationPoints: FC<LocationPointProps> = ({ elementWidth, daysOfYear }) =>
 
         return (
           <LocationPoint id="location-point" key={locationPoint} left={putInTheRightPlace()}>
-            {getNumberOfDayIn365(daysOfYear[positionIn365days - 1], '2022').toLocaleDateString('pt-PT')}
+            {getNumberOfDayIn365(daysOfYear[positionIn365days - 1], selectedYear).toLocaleDateString('pt-PT')}
           </LocationPoint>
         );
       })}

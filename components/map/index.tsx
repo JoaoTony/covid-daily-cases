@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 const Map = (countries: any) => {
-  console.log(countries.countries);
+  // console.log(countries.countries);
 
   const onEachCountry = (country: any, layer: any) => {
     const name = country.properties.ADMIN;

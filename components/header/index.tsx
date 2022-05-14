@@ -1,22 +1,31 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import {
-  Container, Title, FilterSection, Input,
+  Container, Title, FilterSection,
 } from './header.styles';
 
 import ClickableElement from '../clickable-element';
 
-const Header: FC = () => (
-  <Container>
-    <Title>Covid daily cases</Title>
+import InputSelect from '../input-select';
 
-    <FilterSection>
-      <Input />
-      <Input />
-    </FilterSection>
+const availableYears = ['2020', '2021', '2022'];
+const availableViewingPreferences = ['Data Atual', 'Data acumuluda'];
 
-    <ClickableElement />
-  </Container>
-);
+const Header: FC = () => {
+  const [selectedYear, setSelectedYear] = useState(availableYears[0]);
+
+  return (
+    <Container>
+      <Title>Covid daily cases</Title>
+
+      <FilterSection>
+        <InputSelect values={availableYears} onChangeValue={(value) => setSelectedYear(value)} />
+        <InputSelect style={{ marginLeft: 10 }} values={availableViewingPreferences} />
+      </FilterSection>
+
+      <ClickableElement selectedYear={selectedYear} />
+    </Container>
+  );
+};
 
 export default Header;

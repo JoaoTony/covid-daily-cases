@@ -9,7 +9,7 @@ import LocationPoints from './location-point';
 
 const daysOfYear = Array.from({ length: 365 }, (_v, i) => i);
 
-const ClickableElement: FC = () => {
+const ClickableElement: FC<{ selectedYear: string }> = ({ selectedYear }) => {
   const [selectedDate, setSelectedDate] = useState<any>();
   const [elementW, setElementW] = useState<number>(0);
 
@@ -31,7 +31,7 @@ const ClickableElement: FC = () => {
       const selectedWidth = $selected?.getBoundingClientRect().width ?? 0;
       const getPositionInElement = Math.trunc((e.x - tenPercentOfTheWindow) / divider);
 
-      const getSpecificDate = getNumberOfDayIn365(daysOfYear[getPositionInElement], '2022').toLocaleDateString('pt-PT');
+      const getSpecificDate = getNumberOfDayIn365(daysOfYear[getPositionInElement], selectedYear).toLocaleDateString('pt-PT');
 
       if ($float) {
         $float.style.left = `${(e.x - (floatWidth / 2)) - tenPercentOfTheWindow}px`;
@@ -46,13 +46,13 @@ const ClickableElement: FC = () => {
         }
       });
     });
-  }, []);
+  }, [selectedYear]);
 
   return (
     <Container id="clickable-element">
       <Floating id="floating" />
       <Target id="selected" />
-      <LocationPoints elementWidth={elementW} daysOfYear={daysOfYear} />
+      <LocationPoints elementWidth={elementW} daysOfYear={daysOfYear} selectedYear={selectedYear} />
     </Container>
   );
 };
